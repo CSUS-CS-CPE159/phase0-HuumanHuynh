@@ -6,7 +6,10 @@
  * @return value indicating the length of the string
  */
 int strlen(char *str) {
-    //Implement me!
+    int length = 0;
+    while (str[length] != '\0'){
+        length++;
+    }
     return 0;
 }
 
