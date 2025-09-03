@@ -1,1 +1,52 @@
+-[spede] ~/phase0-HuumanHuynh/02-debugging {main *%=}
+01:15:34 $ spede-run -d
+The SPEDE Target will be reset, are you sure? (y/n) y
+Resetting the SPEDE Target...
+Downloading image 'build/MyOS.dli' to SPEDE Target via /dev/pts/7...
+File type is 'ELF'
+Total blocks to download:  0x83  (128 bytes each)
 
+Load Successful ; Code loaded at 0x0x101000 (8416 bytes/sec)
+Executing the image 'build/MyOS.dli' on the SPEDE Target with GDB Enabled
+Launching GDB...
+Reading symbols from build/MyOS.dli...
+Expanding full symbols from build/MyOS.dli...
+Remote debugging using /dev/pts/7
+0x00102689 in breakpoint ()
+Temporary breakpoint 1 at 0x10120a: file src/main.c, line 37.
+
+Temporary breakpoint 1, main () at src/main.c:37
+37	    char buf[128] = {0};
+SPEDE GDB$ c
+Continuing.
+Hello, world!
+Welcome to MyOS!
+NULL pointer!
+The buffer size is 0 bytes
+NULL pointer!
+CPE/CSC 159 for Spring/Fall 1970 will be fun!
+[Inferior 1 (Remote target) exited normally]
+SPEDE GDB$ break puts
+Breakpoint 2 at 0x10119f: file src/main.c, line 21.
+SPEDE GDB$ info break
+Num     Type           Disp Enb Address    What
+2       breakpoint     keep y   0x0010119f in puts at src/main.c:21
+SPEDE GDB$ 
+
+
+
+
+//Changed if(str) to if(!str)
+
+Temporary breakpoint 1 at 0x10120a: file src/main.c, line 37.
+
+Temporary breakpoint 1, main () at src/main.c:37
+37	    char buf[128] = {0};
+SPEDE GDB$ c
+Continuing.
+Hello, world!
+Welcome to MyOS!
+The buffer size is 0 bytes
+CPE/CSC 159 for Spring/Fall 1970 will be fun!
+[Inferior 1 (Remote target) exited normally]
+SPEDE GDB$ Quit
