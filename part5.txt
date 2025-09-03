@@ -28,3 +28,51 @@ SPEDE GDB$ delete 2
 SPEDE GDB$ info break
 No breakpoints or watchpoints.
 SPEDE GDB$ 
+
+
+
+
+Temporary breakpoint 1, main () at src/main.c:37
+37	    char buf[128] = {0};
+SPEDE GDB$ break main.c:49
+Breakpoint 2 at 0x1012ad: file src/main.c, line 49.
+SPEDE GDB$ break main.c:51
+Breakpoint 3 at 0x1012bf: file src/main.c, line 51.
+SPEDE GDB$ info break
+Num     Type           Disp Enb Address    What
+2       breakpoint     keep y   0x001012ad in main at src/main.c:49
+3       breakpoint     keep y   0x001012bf in main at src/main.c:51
+SPEDE GDB$ c
+Continuing.
+Hello, world!
+Welcome to MyOS!
+The buffer size is 0 bytes
+
+Breakpoint 2, main () at src/main.c:49
+49	    puts(buf);
+SPEDE GDB$ print buf
+$1 = "welcome to MyOS!\n", '\000' <repeats 110 times>
+SPEDE GDB$ set buf[0] = 'W'
+SPEDE GDB$ print buf
+$2 = "Welcome to MyOS!\n", '\000' <repeats 110 times>
+SPEDE GDB$ c
+Continuing.
+
+Breakpoint 3, main () at src/main.c:51
+51	    printf("CPE/CSC 159 for Spring/Fall %d will be fun!\n", year);
+SPEDE GDB$ print year
+$3 = 0x7b2
+SPEDE GDB$ print /d year
+$4 = 1970
+SPEDE GDB$ set year = 2025
+SPEDE GDB$ print /d year
+$5 = 8229
+SPEDE GDB$ print year
+$6 = 0x2025
+SPEDE GDB$ set year = 2025.
+SPEDE GDB$ print /d year
+$7 = 2025
+SPEDE GDB$ c
+Continuing.
+CPE/CSC 159 for Spring/Fall 2025 will be fun!
+[Inferior 1 (Remote target) exited normally]
