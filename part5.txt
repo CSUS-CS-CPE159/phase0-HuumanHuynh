@@ -1,0 +1,30 @@
+Temporary breakpoint 1 at 0x10120a: file src/main.c, line 37.
+
+Temporary breakpoint 1, main () at src/main.c:37
+37	    char buf[128] = {0};
+SPEDE GDB$ break strlen
+Breakpoint 2 at 0x101178: file src/main.c, line 9.
+SPEDE GDB$ info break
+Num     Type           Disp Enb Address    What
+2       breakpoint     keep y   0x00101178 in strlen at src/main.c:9
+SPEDE GDB$ c
+Continuing.
+Hello, world!
+Welcome to MyOS!
+
+Breakpoint 2, strlen (str=0x104233 "Hello, World!\n") at src/main.c:9
+9	    int length = 0;
+SPEDE GDB$ backtrace
+#0  strlen (str=0x104233 "Hello, World!\n") at src/main.c:9
+#1  0x001011c2 in puts (str=0x104233 "Hello, World!\n") at src/main.c:26
+#2  0x00101269 in main () at src/main.c:45
+SPEDE GDB$ info args
+str = 0x104233 "Hello, World!\n"
+SPEDE GDB$ info break
+Num     Type           Disp Enb Address    What
+2       breakpoint     keep y   0x00101178 in strlen at src/main.c:9
+	breakpoint already hit 1 time
+SPEDE GDB$ delete 2
+SPEDE GDB$ info break
+No breakpoints or watchpoints.
+SPEDE GDB$ 
